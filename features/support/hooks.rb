@@ -12,7 +12,7 @@ After do |scenario|
   puts "======Starting after hook====="
   puts "======Checkin scenario status======"
   if (scenario.failed?)
-   puts [scenario.scenario_outline.feature.name]
+   puts [scenario.name]
   end
   @driver.quit
 end
