@@ -193,12 +193,35 @@ module Keyboard_Action
 
 end
 
+module Element_Verify
+
+  def self.is_displayed?(element, attr_type, expected, driver)
+    ele = Find_Element.by_id(Locators::Home_page["#{attr_type}"]["#{element}"], driver)
+    if (ele.displayed? != expected)
+      puts fail "Expected: #{expected} and actual:#{ele.displayed?}"
+      return false
+    else
+      puts "Is the element displayed: #{ele.displayed?}"
+      return true
+    end
+  end
+
+  def self.is_clickable?()
+
+  end
+
+end
+
+
+
+
 module Browser
 
   def self.get_title(driver)
     title = driver.title
     return title
   end
+
   def self.switch_iframe(iframe_element_id, driver)
     driver.switch_to.frame(Find_Element.by_id(iframe_element_id))
   end
