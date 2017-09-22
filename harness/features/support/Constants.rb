@@ -40,7 +40,9 @@ Home_page = {
     "Peach"  => "Peach",
     "BMW"    => "BMW",
     "Benz"   => "Benz",
-    "Honda"  => "Honda"
+    "Honda"  => "Honda",
+    "open_window" => "Open Window",
+    "open_tab" => "Open Tab"
   },
   "value" => {
     "bmw"    => "bmw",

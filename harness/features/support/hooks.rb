@@ -15,19 +15,16 @@ Before do |scenario|
   @driver.manage.delete_all_cookies
   @driver.manage.timeouts.implicit_wait = 4
   each_tag = get_tag(scenario)
+  @driver.get 'https://letskodeit.teachable.com/p/practice'
   puts "=================Starting tag: #{each_tag}========================="
 end
 
-
-Before do |scenario|
-
-end
 
 After do |scenario|
   each_tag = get_tag(scenario)
   puts "====================Checkin #{each_tag} status====================="
   if (scenario.failed?)
-   puts [scenario.scenario_outline.feature.name]
+   # puts [scenario.feature.name]
  else
    puts "PASSED: @#{each_tag} -- #{scenario.name}"
  end
