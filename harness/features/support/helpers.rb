@@ -74,7 +74,7 @@ module Find_Elements
     def self.by_id(id, driver)
       elements = nil
       begin
-        elements = driver.find_elements(:id => id)
+        elements = driver.find_element(:id => id)
       rescue Selenium::WebDriver::Error::NoSuchElementException => e
         puts e
       end
@@ -83,7 +83,7 @@ module Find_Elements
     def self.by_class(classs, driver)
       elements = nil
       begin
-        elements = driver.find_elements(:class => classs)
+        elements = driver.find_element(:class => classs)
       rescue Selenium::WebDriver::Error::NoSuchElementException => e
         puts e
       end
@@ -92,7 +92,7 @@ module Find_Elements
     def self.by_name(name, driver)
       elements = nil
       begin
-        elements = driver.find_elements(:name => name)
+        elements = driver.find_element(:name => name)
       rescue Selenium::WebDriver::Error::NoSuchElementException => e
         puts e
       end
@@ -100,7 +100,7 @@ module Find_Elements
     def self.by_class_name(class_name, driver)
       elements = nil
       begin
-        elements = driver.find_elements(:class_name => class_name)
+        elements = driver.find_element(:class_name => class_name)
       rescue Selenium::WebDriver::Error::NoSuchElementException => e
         puts e
       end
@@ -108,7 +108,7 @@ module Find_Elements
     def self.by_text(v_text, driver)
       elements = nil
       begin
-        elements = driver.find_elements(:text => v_text)
+        elements = driver.find_element(:text => v_text)
       rescue Selenium::WebDriver::Error::NoSuchElementException => e
         puts e
       end
@@ -116,7 +116,7 @@ module Find_Elements
     def self.by_link_text(a_text, driver)
       elements = nil
       begin
-        elements = driver.find_elements(:link_text => a_text)
+        elements = driver.find_element(:link_text => a_text)
       rescue Selenium::WebDriver::Error::NoSuchElementException => e
         puts e
       end
@@ -124,7 +124,7 @@ module Find_Elements
     def self.by_partial_link_text(a_text, driver)
       elements = nil
       begin
-        elements = driver.find_elements(:partial_link_text => a_text)
+        elements = driver.find_element(:partial_link_text => a_text)
       rescue Selenium::WebDriver::Error::NoSuchElementException => e
         puts e
       end
@@ -132,7 +132,7 @@ module Find_Elements
     def self.by_tag_name(tag, driver)
       elements = nil
       begin
-        elements = driver.find_elements(:tag_name => tag)
+        elements = driver.find_element(:tag_name => tag)
       rescue Selenium::WebDriver::Error::NoSuchElementException => e
         puts e
       end
@@ -195,8 +195,7 @@ end
 
 module Element_Verify
 
-  def self.is_displayed?(element, attr_type, expected, driver)
-    ele = Find_Element.by_id(Locators::Home_page["#{attr_type}"]["#{element}"], driver)
+  def self.is_displayed?(ele, expected)
     if (ele.displayed? != expected)
       puts fail "Expected: #{expected} and actual:#{ele.displayed?}"
       return false
@@ -206,9 +205,20 @@ module Element_Verify
     end
   end
 
-  def self.is_clickable?()
+  def self.is_clickable?(ele, clickable?)
+    begin
 
+      if !ele.is_displayed 
+        puts fail "#{ele} is not displayed..."
+      else
+        is_it_clickable = ele.enabled?
+        assert_equals(clickable?, is_it_clickable)
+      end
+    rescue NoSuchElementException => e
+      puts e
+    end
   end
+
 
 end
 
