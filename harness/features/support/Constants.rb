@@ -4,8 +4,7 @@ module Locators
 Home_page = {
   "id" =>
         {
-          "radio" =>
-          {
+          "radio"          {
             "bmw"    => "bmwradio",
             "benz"   => "benzradio",
             "honda"  => "hondaradio"
