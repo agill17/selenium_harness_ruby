@@ -1,5 +1,40 @@
 module Find_Element
 
+  def self.get_element(ele, tag, driver)
+    element = nil
+
+    case 
+    when driver.method(tag).call(:id, ele).exists?
+      element = driver.method(tag).call(:id, ele)
+
+    when driver.method(tag).call(:name, ele).exists?
+      element = driver.method(tag).call(:name, ele)
+
+    when driver.method(tag).call(:name, ele).exists?
+      element = driver.method(tag).call(:name, ele)
+
+    when driver.method(tag).call(:value, ele).exists?
+      element = driver.method(tag).call(:value, ele)
+
+    when driver.method(tag).call(:class, ele).exists?
+      element = driver.method(tag).call(:class, ele)
+
+    when driver.method(tag).call(:xpath, ele).exists?
+      element = driver.method(tag).call(:xpath, ele)
+
+    when driver.method(tag).call(:link_text, ele).exists?
+      element = driver.method(tag).call(:link_text, ele)
+
+    when driver.method(tag).call(:partial_link_text, ele).exists?
+      element = driver.method(tag).call(:partial_link_text, ele)
+    
+    else
+      fail("#{ele} NOT FOUND WITH TAG #{tag} !!!! ")
+    end
+    return element
+  end
+  
+
   def self.by_id(id, driver)
     element = nil
     begin

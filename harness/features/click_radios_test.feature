@@ -3,7 +3,7 @@ Feature: Test Feature
 @JIRA-73DA89
 Scenario: Click all radio buttons
   Given I am on the home page
-  When I click the "bmw" radio "id"
+  When I click the "bmw" "div"
   And I verify the "bmw" radio "id" is selected
   When I click the "benz" radio "id"
   And I verify the "benz" radio "id" is selected

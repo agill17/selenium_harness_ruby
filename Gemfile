@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
 
-gem 'selenium-webdriver'
+gem 'watir-webdriver'
 gem 'test-unit'
 gem 'cucumber'

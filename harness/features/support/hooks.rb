@@ -10,10 +10,9 @@ end
 
 Before do |scenario|
   puts "====================Starting before hook==========================="
-  @driver = Selenium::WebDriver.for :chrome
-  @driver.manage.window.maximize
-  @driver.manage.delete_all_cookies
-  @driver.manage.timeouts.implicit_wait = 4
+  @driver = Watir::Browser.new :chrome
+  @driver.window.maximize
+  @driver.manage.timeouts.implicit_wait = 5
   each_tag = get_tag(scenario)
   @driver.get 'https://letskodeit.teachable.com/p/practice'
   puts "=================Starting tag: #{each_tag}========================="
@@ -28,6 +27,6 @@ After do |scenario|
  else
    puts "PASSED: @#{each_tag} -- #{scenario.name}"
  end
-  @driver.quit
+  @driver.close
   puts "===================Finished tag: #{each_tag}==========================="
 end

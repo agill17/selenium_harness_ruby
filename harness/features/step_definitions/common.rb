@@ -1,37 +1,23 @@
-Given(/^I click the "(.*?)" (radio|checkbox|button) "(.*?)"$/) do | ele,type,attr_type |
-  element = nil
-  case attr_type
-  when "id"
-    element = Find_Element.by_id(Locators::Home_page["id"]["#{type}"]["#{ele}"], @driver)
-  when "class"
-    element = Find_Element.by_class(Locators::Home_page["class"]["#{type}"]["#{ele}"], @driver)
-  when "text"
-    element = Find_Element.by_text(Locators::Home_page["text"]["#{type}"]["#{ele}"], @driver)
-  when "name" 
-    element = Find_Element.by_name(Locators::Home_page["name"]["#{type}"]["#{ele}"], @driver)
+Given(/^I (click|double click) the "(.*?)" "(.*?)"$/) do |action, ele, tag|
+  element = Find_Element.get_element(ele, tag, @driver)
+  
+  if (!element.nil?) 
+    element.method(action).call
   end
-  element.click
+
 end
 
-Given(/^I verify the "(.*?)" (radio|checkbox) "(.*?)" is (selected|not selected)$/) do |ele, type, attr_type, expected_action|
+
+Given(/^I verify the "(.*?)" (radio|checkbox) "(.*?)" is (selected|not selected)$/) do |ele, tag, expected_action|
   expected = false
   if expected_action == "selected"
     expected = true
   end
 
-  element = nil
-  case attr_type
-  when "id"
-    element = Find_Element.by_id(Locators::Home_page["id"]["#{type}"]["#{ele}"], @driver)
-  when "class"
-    element = Find_Element.by_class(Locators::Home_page["class"]["#{type}"]["#{ele}"], @driver)
-  when "text"
-    element = Find_Element.by_text(Locators::Home_page["text"]["#{type}"]["#{ele}"], @driver)
-  when "name" 
-    element = Find_Element.by_name(Locators::Home_page["name"]["#{type}"]["#{ele}"], @driver)
-  end  
-
-  if (expected != element.selected?)
-    puts fail
+  element = Find_Element.get_element(ele, tag, @driver)
+  if (!element.nil?)
+    if (element.selected? != expected)
+      fail("Expected element to be: #{expected}. Actual element was selected? #{element.selcted?}")
+    end
   end
 end
