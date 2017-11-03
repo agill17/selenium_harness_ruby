@@ -5,7 +5,7 @@ Scenario: Click all radio buttons
   Given I am on the home page
   When I click the "bmw" "div"
   And I verify the "bmw" radio "id" is selected
-  When I click the "benz" radio "id"
+  When I click the "benz" "div"
   And I verify the "benz" radio "id" is selected
   And I verify the "bmw" radio "id" is not selected
   And I verify the "benz" radio "id" is selected
@@ -17,9 +17,9 @@ Scenario: Click all radio buttons
 @JIRA-73HA80
 Scenario: Click all radio buttons
   Given I am on the home page
-  When I click the "bmw" radio "id"
+  When I click the "bmw" "div"
   And I verify the "bmw" radio "id" is selected
-  When I click the "benz" radio "id"
+  When I click the "benz" "div"
   And I verify the "benz" radio "id" is selected
   And I verify the "bmw" radio "id" is not selected
   And I verify the "benz" radio "id" is selected
