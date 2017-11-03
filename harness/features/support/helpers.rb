@@ -31,6 +31,7 @@ module Find_Element
     else
       fail("#{ele} NOT FOUND WITH TAG #{tag} !!!! ")
     end
+    
     return element
   end
   
@@ -238,6 +239,17 @@ module Element_Verify
       puts "Is the element displayed: #{ele.displayed?}"
       return true
     end
+  end
+
+
+  def self.selected(ele, expected)
+
+    if ele.selected? == expected
+      p "Expected to be selected: #{expected} ---- Is element selected: #{ele.selected?}"
+    else
+      fail("Expected to be selected: #{expected} ---- Is element selected: #{ele.selected?}")
+    end
+
   end
 
   def self.is_clickable?(ele, clickable?)
