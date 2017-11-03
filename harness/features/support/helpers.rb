@@ -10,8 +10,8 @@ module Find_Element
     when driver.method(tag).call(:name, ele).exists?
       element = driver.method(tag).call(:name, ele)
 
-    when driver.method(tag).call(:name, ele).exists?
-      element = driver.method(tag).call(:name, ele)
+    when driver.method(tag).call(:class_name, ele).exists?
+      element = driver.method(tag).call(:class_name, ele)
 
     when driver.method(tag).call(:value, ele).exists?
       element = driver.method(tag).call(:value, ele)
@@ -31,7 +31,7 @@ module Find_Element
     else
       fail("#{ele} NOT FOUND WITH TAG #{tag} !!!! ")
     end
-    
+
     return element
   end
   

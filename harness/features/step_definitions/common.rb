@@ -1,4 +1,9 @@
 Given(/^I (click|double click) the "(.*?)" "(.*?)"$/) do |action, ele, tag|
+
+  if action == 'double click'
+    action = 'double_click'
+  end
+
   element = Find_Element.get_element(ele, tag, @driver)
   
   if (!element.nil?) 
